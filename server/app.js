@@ -1,8 +1,11 @@
 const express=require('express');
 const mongoose=require('mongoose');
+const dotenv = require("dotenv");
 const app=express();
-const DB="mongodb+srv://sohom:sohom@cluster0.w9vf65x.mongodb.net/mern1?retryWrites=true&w=majority";
-mongoose.connect(DB,{
+dotenv.config();
+
+const database=process.env.MONGO_URL; 
+mongoose.connect(database,{
     useNewUrlParser:true,
     //useCatchIndex:true,
     useUnifiedTopology:true,
@@ -30,4 +33,4 @@ app.get('/register',(req,res)=>{
 
 app.listen(3000,()=>{
     console.log("connected to 3000 port");
-}) 
+})  
