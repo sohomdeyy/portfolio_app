@@ -4,17 +4,9 @@ const dotenv = require("dotenv");
 const app=express();
 dotenv.config();
 
-const database=process.env.MONGO_URL; 
-mongoose.connect(database,{
-    useNewUrlParser:true,
-    //useCatchIndex:true,
-    useUnifiedTopology:true,
-    //useFindAndModify:false
-}).then(()=>{
-    console.log('connection seccessful');
-}).catch((err)=>{
-    console.log(err)
-});
+require('./db/conn');
+const port=process.env.PORT; 
+
 app.get('/',(req,res)=>{
     res.send('hello world');
 });
@@ -31,6 +23,6 @@ app.get('/register',(req,res)=>{
     res.send('this is registers page');
 });
 
-app.listen(3000,()=>{
-    console.log("connected to 3000 port");
+app.listen(port,()=>{
+    console.log(`connected to  ${port}`);
 })  
