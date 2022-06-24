@@ -1,10 +1,12 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const dotenv = require("dotenv");
+const User=require('./model/userSchema');
 const app=express();
 dotenv.config();
 
 require('./db/conn');
+
 const port=process.env.PORT; 
 
 app.get('/',(req,res)=>{
@@ -25,4 +27,4 @@ app.get('/register',(req,res)=>{
 
 app.listen(port,()=>{
     console.log(`connected to  ${port}`);
-})  
+})   
